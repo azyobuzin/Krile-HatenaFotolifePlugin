@@ -1,0 +1,65 @@
+﻿<Window x:Class="HatenaFotolifePlugin.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:HatenaFotolifePlugin"
+        Width="370" Height="240"
+        Title="HatenaFotolife::Plugin 設定"
+        WindowStartupLocation="CenterOwner"
+        Loaded="Window_Loaded"
+        ShowInTaskbar="False">
+    <Window.DataContext>
+        <my:ConfigWindowViewModel></my:ConfigWindowViewModel>
+    </Window.DataContext>
+    
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0" Header="はてなアカウント">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="ユーザー名 : "></TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Setting.UserName}"></TextBox>
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="パスワード : "></TextBlock>
+                <PasswordBox x:Name="Password" Grid.Column="1" Grid.Row="1" PasswordChanged="Password_PasswordChanged"></PasswordBox>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Header="アップロード設定">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="既定タイトル : "></TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Setting.DefaultTitle}"></TextBox>
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="既定フォルダ : "></TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Setting.DefaultFolder}"></TextBox>
+
+                <CheckBox Grid.ColumnSpan="2" Grid.Row="3" Content="アップロード時にタイトルを指定する" IsChecked="{Binding Setting.Confirm}"></CheckBox>
+            </Grid>
+        </GroupBox>
+
+        <Button x:Name="CloseButton" Grid.Row="3" Width="100" HorizontalAlignment="Right" Click="CloseButton_Click" IsDefault="True" IsCancel="True">閉じる</Button>
+    </Grid>
+</Window>
